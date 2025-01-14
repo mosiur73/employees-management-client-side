@@ -1,27 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import toast from 'react-hot-toast';
 
 const Navbar = () => {
   const {signOutUser,user}=useContext(AuthContext)
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const handleSignOut = async () => {
     try {
       await signOutUser();
       toast.success('You have successfully signed out!');
+      setDropdownVisible(false);
     } catch (error) {
       toast.error('Failed to sign out. Please try again.');
       console.error('Sign-out error:', error);
     }
   };
+  const toggleDropdown = () => setDropdownVisible(!dropdownVisible);
+
 
   const links = < >
   <li><NavLink to="/">Home</NavLink></li>
-  <li><NavLink to="/about">About</NavLink></li>
+  <li><NavLink to="/dashboard">Dashboard</NavLink></li>
   <li><NavLink to="/contact">Contact</NavLink></li>
-  <li><NavLink to="/login">Login</NavLink></li>
-  <li><NavLink to="/signup">Signup</NavLink></li>
+ 
   
     
 </>
@@ -57,13 +60,37 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-         {user ?<>
-          <button onClick={handleSignOut}  className='btn btn-error' >Log Out</button>
-         </>
+         {user ? (
+          <div className="relative">
+            {/* User Photo */}
+            <img
+              src={user.photoURL || 'https://via.placeholder.com/40'} // Default placeholder
+              alt="User"
+              className="w-10 h-10 rounded-full cursor-pointer"
+              onClick={toggleDropdown}
+            />
+            {/* Dropdown */}
+            {dropdownVisible && (
+              <div className="absolute right-0 mt-6 w-40 h-40 bg-white shadow-lg rounded-lg p-2 z-10">
+                <button
+                  onClick={handleSignOut}
+                  className="btn btn-info w-full text-center">
+                  Log Out
+                </button>
+              </div>
+            )}
+          </div>
+        ) 
          :
-        <Link to="/login">
-        <button className='btn btn-error'>Login</button>
+        <>
+        
+        <Link to="/signup">
+        <button className='btn btn-accent'>Signup</button>
         </Link>
+        <Link to="/login">
+        <button className='btn btn-error ml-3'>Login</button>
+        </Link>
+        </>
          }
         </div>
       </div>
