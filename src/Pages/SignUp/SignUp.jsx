@@ -4,33 +4,41 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import toast from 'react-hot-toast';
 import SocialLogin from '../../component/SocialLogin/SocialLogin';
+import { imageUpload } from '../../api/utils';
 
+
+const image_hosting_key=import.meta.env. VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const SignUp = () => {
-    const navigate=useNavigate()
+  const navigate = useNavigate()
 
-    const {createUser,updateUserProfile}=useContext(AuthContext)
-    const handleSubmit = async event => {
-        event.preventDefault()
-        const form = event.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const password=form.password.value;
-        console.table(name,email,password)
+  const { createUser, updateUserProfile } = useContext(AuthContext)
+  const handleSubmit = async event => {
+    event.preventDefault()
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.table(name, email, password)
+  
 
-        createUser(email,password,name)
-        .then(result =>{
-           console.log(result)
-           toast.success('Registration successful! ');
-           navigate('/');
+    
+    createUser(email, password, name)
+      .then(result => {
+        console.log(result)
+         updateUserProfile(name, photoURL)
+      console.log(result)
+        toast.success('Registration successful! ');
+        navigate('/');
 
-        })
-        .catch(error =>{
-           console.log(error)
-           toast.error('Registration failed. Please try again.');
-        })
-    }
-    return (
-        <div className='flex justify-center items-center min-h-screen bg-white'>
+      })
+      .catch(error => {
+        console.log(error)
+        toast.error('Registration failed. Please try again.');
+      })
+  }
+  return (
+    <div className='flex justify-center items-center min-h-screen bg-white'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
@@ -56,7 +64,7 @@ const SignUp = () => {
                 data-temp-mail-org='0'
               />
             </div>
-          
+
             <div>
               <label htmlFor='email' className='block mb-2 text-sm'>
                 Email address
@@ -69,6 +77,83 @@ const SignUp = () => {
                 placeholder='Enter Your Email Here'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
                 data-temp-mail-org='0'
+              />
+            </div>
+
+            {/* role and salary */}
+            <div className='flex gap-2'>
+              {/* role */}
+              <div>
+              <label htmlFor='email' className='block mb-2 text-sm'>
+                Role
+              </label>
+              <select className="select select-primary w-full max-w-xs required:">
+                <option  >your role</option>
+                <option>Hr</option>
+                <option>Employee</option>
+              </select>
+              </div>
+              {/* salary */}
+              <div>
+              <label htmlFor='email' className='block mb-2 text-sm'>
+               salary
+              </label>
+              <input
+                type='number'
+                name='salary'
+                id='salary'
+                required
+                placeholder='Enter Your Email Here'
+                className='w-full required: px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
+                data-temp-mail-org='0'
+              />
+            </div>
+            </div>
+
+            <div className='flex gap-3 items-center'>
+            
+              {/* Bank account */}
+              <div>
+              <label className='block mb-2 text-sm'>
+              Bank account no
+              </label>
+              <input
+                type='number'
+                name='account'
+                id='account'
+                required
+                placeholder='Enter Your account no'
+                className='w-full required: px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
+                data-temp-mail-org='0'
+              />
+            </div>
+              {/* designation */}
+              <div>
+              <label className='block mb-2 text-sm'>
+              Designation
+              </label>
+              <select className="select select-primary w-full max-w-xs required:">
+                <option  >Digital Marketer </option>
+                <option>Social Media executive</option>
+                <option>Sales Assistant</option>
+              </select>
+              </div>
+            </div>
+            {/* photo upload */}
+            <div>
+              <label htmlFor='image' className='block mb-2 text-sm'>
+                Photo
+              </label>
+              
+              <input
+                required
+                type='file'
+                name='image'
+                id='image'
+                 accept='image/*'
+                placeholder='upload your photo'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
+                
               />
             </div>
             <div>
@@ -92,10 +177,10 @@ const SignUp = () => {
           <div>
             <button
               type='submit'
-              
+
               className='bg-lime-500 w-full rounded-md py-3 text-white'
             >SignUp
-             
+
             </button>
           </div>
         </form>
@@ -106,7 +191,7 @@ const SignUp = () => {
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div>
-         <SocialLogin></SocialLogin>
+        <SocialLogin></SocialLogin>
         <p className='px-6 text-sm text-center text-gray-400'>
           Already have an account?{' '}
           <Link
@@ -119,7 +204,7 @@ const SignUp = () => {
         </p>
       </div>
     </div>
-    );
+  );
 };
 
 export default SignUp;
