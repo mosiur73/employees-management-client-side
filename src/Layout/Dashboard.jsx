@@ -19,9 +19,9 @@ const Dashboard = () => {
                             WorkSheet</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/order/contact">
+                        <NavLink to="/dashboard/manageUser">
                             <FaEnvelope></FaEnvelope>
-                            Contact</NavLink>
+                            Manage User</NavLink>
                     </li>
             </ul>
 
