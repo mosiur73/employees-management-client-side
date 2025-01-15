@@ -4,34 +4,82 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import toast from 'react-hot-toast';
 import SocialLogin from '../../component/SocialLogin/SocialLogin';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import axios from 'axios';
 import { imageUpload } from '../../api/utils';
+import Swal from 'sweetalert2';
 
 
-const image_hosting_key=import.meta.env. VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+
+
+
+// const image_hosting_key=import.meta.env. VITE_IMAGE_HOSTING_KEY;
+// const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const SignUp = () => {
+  const axiosPublic=useAxiosPublic()
   const navigate = useNavigate()
-
   const { createUser, updateUserProfile } = useContext(AuthContext)
+
   const handleSubmit = async event => {
     event.preventDefault()
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
+    const role = form.role.value;
+    const salary = form.salary.value;
+    const account = form.account.value;
+    const Designation = form.designation.value;
     const password = form.password.value;
-    console.table(name, email, password)
+    const image=form.image.files[0]
   
 
+ 
+  const photoUrl=await imageUpload(image)
     
-    createUser(email, password, name)
+    // try{
+    //   const result= await createUser(email, password)
+
+    //   await updateUserProfile(name,photoUrl)
+    //   console.log(result)
+    //    toast.success('Registration successful! ');
+    //     navigate('/');
+    // }catch (err) {
+    //   console.log(err)
+    //   toast.error(err?.message)
+    // }
+
+    
+    createUser(email, password)
       .then(result => {
         console.log(result)
-         updateUserProfile(name, photoURL)
-      console.log(result)
-        toast.success('Registration successful! ');
-        navigate('/');
+        
+             updateUserProfile(name,photoUrl)
+             .then(()=>{
+              const userInfo={name,email,photoUrl,role,salary,account,Designation}
+              
+              axiosPublic.post('/users',userInfo)
+              .then(res => {
+                if (res.data.insertedId) {
+                    console.log('user added to the database',res.data)
+                   
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'User created successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate('/');
+                }
+            })
+              toast.success('Registration successful! ');
+              // navigate('/');
+             })
+             .catch(error=>{
+              console.log(error)
+             })
 
-      })
+           })
       .catch(error => {
         console.log(error)
         toast.error('Registration failed. Please try again.');
@@ -87,15 +135,16 @@ const SignUp = () => {
               <label htmlFor='email' className='block mb-2 text-sm'>
                 Role
               </label>
-              <select className="select select-primary w-full max-w-xs required:">
-                <option  >your role</option>
-                <option>Hr</option>
-                <option>Employee</option>
+              <select
+              name='role'
+               className="select select-primary w-full max-w-xs required:">
+                <option value="Hr">Hr</option>
+                <option value="employee">Employee</option>
               </select>
               </div>
               {/* salary */}
               <div>
-              <label htmlFor='email' className='block mb-2 text-sm'>
+              <label htmlFor='salary' className='block mb-2 text-sm'>
                salary
               </label>
               <input
@@ -132,10 +181,12 @@ const SignUp = () => {
               <label className='block mb-2 text-sm'>
               Designation
               </label>
-              <select className="select select-primary w-full max-w-xs required:">
-                <option  >Digital Marketer </option>
-                <option>Social Media executive</option>
-                <option>Sales Assistant</option>
+              <select
+              name='designation'
+              className="select select-primary w-full max-w-xs required:">
+                <option  value="digital marketer">Digital Marketer </option>
+                <option value="social-media-executive">Social Media executive</option>
+                <option value="sales-assistant">Sales Assistant</option>
               </select>
               </div>
             </div>
@@ -146,7 +197,7 @@ const SignUp = () => {
               </label>
               
               <input
-                required
+                
                 type='file'
                 name='image'
                 id='image'

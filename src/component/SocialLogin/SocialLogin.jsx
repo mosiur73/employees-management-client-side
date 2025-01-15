@@ -3,21 +3,42 @@ import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '../../Providers/AuthProvider';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SocialLogin = () => {
   const {signInWithGoogle}=useContext(AuthContext)
   const navigate=useNavigate()
+  const axiosPublic=useAxiosPublic()
 
   const handleGoogleSignIn = async () => {
-    try {
-      await signInWithGoogle()
+    signInWithGoogle()
+    .then(result =>{
+      console.log(result.user);
+      const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName,
+          photoURL:result.user?.photoURL,
+          role:'employee',
+          salary:'42342',
+          account:'343434',
+          Designation:'digital marketer'
+      }
+      axiosPublic.post('/users', userInfo)
+      .then(res =>{
+          console.log(res.data);
+          navigate('/');
+      })
+  })
+    // try {
+    //   await signInWithGoogle()
+    //   const userInfo={}
 
-      toast.success('Signin Successful')
-      navigate('/')
-    } catch (err) {
-      console.log(err)
-      toast.error(err?.message)
-    }
+    //   toast.success('Signin Successful')
+    //   navigate('/')
+    // } catch (err) {
+    //   console.log(err)
+    //   toast.error(err?.message)
+    // }
   }
     return (
         <div>
