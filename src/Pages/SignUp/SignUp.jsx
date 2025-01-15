@@ -1,22 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
-import toast from 'react-hot-toast';
+
 import SocialLogin from '../../component/SocialLogin/SocialLogin';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import axios from 'axios';
 import { imageUpload } from '../../api/utils';
 import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
-
-
-
-
-// const image_hosting_key=import.meta.env. VITE_IMAGE_HOSTING_KEY;
-// const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 const SignUp = () => {
   const axiosPublic=useAxiosPublic()
+  const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
   const { createUser, updateUserProfile } = useContext(AuthContext)
 
@@ -35,19 +31,18 @@ const SignUp = () => {
 
  
   const photoUrl=await imageUpload(image)
-    
-    // try{
-    //   const result= await createUser(email, password)
+   
+  setErrorMessage('')
+  if (password.length < 6) {
+    setErrorMessage('Password should be 6 characters or longer');
+    return;
+}
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
-    //   await updateUserProfile(name,photoUrl)
-    //   console.log(result)
-    //    toast.success('Registration successful! ');
-    //     navigate('/');
-    // }catch (err) {
-    //   console.log(err)
-    //   toast.error(err?.message)
-    // }
-
+if (!passwordRegex.test(password)) {
+    setErrorMessage('At least one uppercase, one lowercase, one number, one special character');
+    return;
+}
     
     createUser(email, password)
       .then(result => {
@@ -223,6 +218,9 @@ const SignUp = () => {
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
               />
             </div>
+            {
+                errorMessage && <p className='text-red-600'>{errorMessage}</p>
+            }
           </div>
 
           <div>

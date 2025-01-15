@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
+
 
 const Navbar = () => {
   const {signOutUser,user}=useContext(AuthContext)

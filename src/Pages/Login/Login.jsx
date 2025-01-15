@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
-import toast from 'react-hot-toast';
+
 import SocialLogin from '../../component/SocialLogin/SocialLogin';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const {signIn}=useContext(AuthContext)

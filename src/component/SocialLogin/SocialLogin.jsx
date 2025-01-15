@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '../../Providers/AuthProvider';
-import toast from 'react-hot-toast';
+
 import { useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
