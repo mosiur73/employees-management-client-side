@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
@@ -6,12 +6,14 @@ import { toast } from 'react-toastify';
 import { useQuery } from '@tanstack/react-query';
 import { FaRegEdit, FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../../Providers/AuthProvider';
 
 const WorkSheet = () => {
     const [date, setDate] = useState(new Date());
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
     const axiosPublic = useAxiosPublic();
+    const {user}=useContext(AuthContext)
 
     const handleSubmit= e=>{
         e.preventDefault();
@@ -19,7 +21,7 @@ const WorkSheet = () => {
         const tasks = form.tasks.value;
         const hours = form.hours.value;
         const formattedDate = date.toISOString().split('T')[0];
-        const data = { tasks, hours, date: formattedDate };
+        const data = { tasks, hours, date: formattedDate,email:user?.email };
     
         axiosPublic.post(`/employee`, data)
             .then(() => {

@@ -2,18 +2,24 @@ import React from 'react';
 import { FaEnvelope, FaHome, FaPaypal, FaSearch } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
+import { GiProgression } from 'react-icons/gi';
 
 const Dashboard = () => {
     const [isAdmin]=useAdmin()
     return (
         <div className='flex pl-2'>
             <div className='w-80 min-h-screen bg-gray-300 text-gray-800 font-bold '>
-            <ul className='menu p-4 space-y-4 text-2xl'>
+            <ul className='menu p-4 space-y-6 text-2xl'>
            
                     <li>
                         <NavLink to="/dashboard/payroll">
                         <FaPaypal />
                             Payroll</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/progress">
+                        <GiProgression />
+                            Progress</NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/worksheet">

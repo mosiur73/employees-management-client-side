@@ -71,12 +71,12 @@ const ManageUser = () => {
     return (
         <div>
             <h1 className='text-center text-2xl text-[rgb(209,160,84)]'>Employee-List</h1>
-            <h2 className='text-2xl'>Total User :{users.length} </h2>
+            <h2 className='text-2xl'>Payroll User :{users.length} </h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead className='rounded-tl-lg rounded-tr-lg bg-[rgb(209,160,84)] p-4 text-white text-xl font-bold'>
-                        <tr>
+                    <thead className='rounded-mdd bg-[rgb(209,160,84)] p-4 text-white text-xl font-bold'>
+                        <tr >
                             <th>si</th>
                             <th>Name</th>
                             <th>Email</th>
