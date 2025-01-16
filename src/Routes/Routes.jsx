@@ -13,12 +13,16 @@ import Dashboard from "../Layout/Dashboard";
 import WorkSheet from "../Pages/Home/Home/WorkSheet/WorkSheet";
 import ManageUser from "../Pages/DashBoard/ManageUser/ManageUser";
 import AdminRoute from "./AdminRoute";
+import EmployDetails from "../Pages/DashBoard/ManageUser/EmployDetails";
+import Payroll from "../Pages/DashBoard/Payroll/Payroll";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 
  export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement:<ErrorPage></ErrorPage>,
       children:[
         {
             path:"/",
@@ -49,6 +53,15 @@ import AdminRoute from "./AdminRoute";
         {
           path:"manageUser",
           element:<ManageUser></ManageUser>
+        },
+        {
+          path:"details/:id",
+          element:<EmployDetails></EmployDetails>,
+          loader: ({params}) => fetch(`http://localhost:5000/users/${params.id}`)
+        },
+        {
+          path:"payroll",
+          element:<Payroll></Payroll>
         }
       ]
     }

@@ -50,7 +50,7 @@ if (!passwordRegex.test(password)) {
         
              updateUserProfile(name,photoUrl)
              .then(()=>{
-              const userInfo={name,email,photoUrl,role,salary,account,Designation}
+              const userInfo={name,email,photoUrl,role,salary,account,Designation,verified:'false'}
               
               axiosPublic.post('/users',userInfo)
               .then(res => {

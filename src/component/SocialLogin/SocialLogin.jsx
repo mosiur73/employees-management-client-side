@@ -21,7 +21,8 @@ const SocialLogin = () => {
           role:'employee',
           salary:'42342',
           account:'343434',
-          Designation:'digital marketer'
+          Designation:'digital marketer',
+          verified:'false'
       }
       axiosPublic.post('/users', userInfo)
       .then(res =>{

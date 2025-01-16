@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaEnvelope, FaHome, FaSearch } from 'react-icons/fa';
+import { FaEnvelope, FaHome, FaPaypal, FaSearch } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
 
@@ -8,11 +8,12 @@ const Dashboard = () => {
     return (
         <div className='flex pl-2'>
             <div className='w-80 min-h-screen bg-gray-300 text-gray-800 font-bold '>
-            <ul className='menu p-4'>
-            <li>
-                        <NavLink to="/">
-                            <FaHome></FaHome>
-                            Home</NavLink>
+            <ul className='menu p-4 space-y-4 text-2xl'>
+           
+                    <li>
+                        <NavLink to="/dashboard/payroll">
+                        <FaPaypal />
+                            Payroll</NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/worksheet">
@@ -22,7 +23,13 @@ const Dashboard = () => {
                     <li>
                         <NavLink to="/dashboard/manageUser">
                             <FaEnvelope></FaEnvelope>
-                            Manage User</NavLink>
+                            Employee-List</NavLink>
+                    </li>
+                    <div className='divider'></div>
+                    <li>
+                        <NavLink to="/">
+                            <FaHome></FaHome>
+                            Home</NavLink>
                     </li>
             </ul>
 

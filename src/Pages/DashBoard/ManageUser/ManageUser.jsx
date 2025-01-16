@@ -5,6 +5,7 @@ import { MdOutlineCancel, MdVerifiedUser } from 'react-icons/md';
 import { FaCcAmazonPay } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 
 const ManageUser = () => {
@@ -43,7 +44,7 @@ const ManageUser = () => {
             const year = form.year.value;
             const salary = form.salary.value;
             
-            const data = { month,year,salary };
+            const data = { month,year,salary,name:selectedUser.name };
         
             axiosSecure.post(`/payroll`, data)
                 .then(() => {
@@ -69,12 +70,12 @@ const ManageUser = () => {
 
     return (
         <div>
-            <h1 className='text-center text-2xl text-teal-900'>Employee-List</h1>
-            <h2>Total User :{users.length} </h2>
+            <h1 className='text-center text-2xl text-[rgb(209,160,84)]'>Employee-List</h1>
+            <h2 className='text-2xl'>Total User :{users.length} </h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead>
+                    <thead className='rounded-tl-lg rounded-tr-lg bg-[rgb(209,160,84)] p-4 text-white text-xl font-bold'>
                         <tr>
                             <th>si</th>
                             <th>Name</th>
@@ -95,7 +96,7 @@ const ManageUser = () => {
                                 <td>{user.salary}</td>
                                 <td>{user.account}</td>
                                 <td>
-                                    {user.role === 'Hr' ? <button className='btn'> <MdVerifiedUser className='text-2xl ' /> </button> :<button
+                                    {user.verified === 'verified' ? <button className='btn'> <MdVerifiedUser className='text-2xl ' /> </button> :<button
                                     onClick={()=>handleVerified(user)}
                                      className='btn '><MdOutlineCancel className='text-2xl text-red-600' /></button>}
                                 </td>
@@ -103,14 +104,17 @@ const ManageUser = () => {
                                 <td>
                                <button
                                onClick={() => openModal(user)}
+                               disabled={user?.verified !== 'verified'}
                                 className='btn'>pay <FaCcAmazonPay className='text-2xl' /></button>
                                 </td>
                                
 
                                 <td>
+                                    <Link to={`/dashboard/details/${user._id}`}>
                                     <button className="btn btn-ghost btn-lg ">
                                        Details
                                     </button>
+                                    </Link>
                                 </td>
                             </tr>
                             )
