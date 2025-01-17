@@ -17,6 +17,11 @@ const Dashboard = () => {
                             Payroll</NavLink>
                     </li>
                     <li>
+                        <NavLink to="/dashboard/allEmployee">
+                        <FaPaypal />
+                            All-Employee-List</NavLink>
+                    </li>
+                    <li>
                         <NavLink to="/dashboard/progress">
                         <GiProgression />
                             Progress</NavLink>

@@ -21,7 +21,7 @@ const WorkSheet = () => {
         const tasks = form.tasks.value;
         const hours = form.hours.value;
         const formattedDate = date.toISOString().split('T')[0];
-        const data = { tasks, hours, date: formattedDate,email:user?.email };
+        const data = { tasks, hours, date: formattedDate,email:user?.email,name:user?.displayName };
     
         axiosPublic.post(`/employee`, data)
             .then(() => {
