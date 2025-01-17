@@ -12,6 +12,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { ToastContainer } from 'react-toastify'
+import { ThemeProvider } from '@material-tailwind/react'
 
 const queryClient = new QueryClient()
 
@@ -20,9 +21,11 @@ createRoot(document.getElementById('root')).render(
    <AuthProvider>
    <QueryClientProvider client={queryClient}>
    <HelmetProvider>
+   <ThemeProvider>
    <div className='w-full mx-auto'>
    <RouterProvider router={router}></RouterProvider>
    </div>
+   </ThemeProvider>
    <ToastContainer
 position="top-center"
 autoClose={2000}

@@ -63,7 +63,7 @@ const Progress = () => {
             {/* Table */}
             <div className="overflow-x-auto">
                 <table className="table">
-                    <thead className="rounded-mdd bg-[rgb(209,160,84)] p-4 text-white text-xl font-bold">
+                    <thead className="rounded-md bg-[rgb(209,160,84)] p-4 text-white text-xl font-bold">
                         <tr>
                             <th>SI</th>
                             <th>Name</th>
