@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {  useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { FcPaid } from 'react-icons/fc';
 
 const Payroll = () => {
     const axiosSecure=useAxiosSecure()
@@ -15,22 +16,23 @@ const Payroll = () => {
         },
     });
 
-     // Mutation for handling payment
-     const { mutate: payUser } = useMutation
-     ({
-      mutationFn: async (userId) => {
-          const res = await axiosSecure.post(`/history/${userId}`, {
-              paymentDate: new Date().toISOString(), 
-
-          });
-          console.log(res.data)
-          return res.data;
-      },
-      onSuccess: () => {
-          toast.success('payment successfully')
-          refetch();
-      },
-  });
+   
+  const payUser=user =>{
+    const month=user.month;
+    const year=user.year;
+    const salary=user.salary;
+   
+    const data={month,year,salary, paymentDate: new Date().toISOString(),  transactionId: `txn_${Math.random().toString(36).substring(2, 15)}`,}
+    console.log(data)
+     axiosSecure.post('/history', data)
+                    .then(() => {
+                        refetch();
+                        toast.success('payment  successfully');
+                    })
+                    .catch(() => {
+                        toast.error('Error submitting data');
+                    });
+  }
     return (
         <div>
             <h3 className='text-2xl mb-2'>Total payment: {users.length}</h3>
@@ -57,9 +59,10 @@ const Payroll = () => {
             <td>{user.month}</td>
             <td>{user.year}</td>
             <td>
-                <button  onClick={() => payUser(user._id)}  className='btn'>pay</button>
+                <button  onClick={() => payUser(user)}  className='btn'>pay</button>
+                <button>paid<FcPaid /></button>
             </td>
-            <td>{user.paymentDate ? new Date(user.paymentDate).toLocaleDateString() : ''}</td>
+            <td>payment Date </td>
           </tr>)
     }
      

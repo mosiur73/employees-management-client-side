@@ -9,7 +9,7 @@ import img5 from '../assets/bannar/img5.jpg'
 
 const Banner = () => {
     return (
-       <div  className="h-[500px] overflow-hidden">
+       <div  className="h-[600px] overflow-hidden">
          <Carousel >
             <div className="">
                 <img  src={img1} />
