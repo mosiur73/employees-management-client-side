@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 const Payroll = () => {
     const axiosSecure=useAxiosSecure()
+
     const { data: users = [], refetch } = useQuery({
         queryKey: ['payroll'],
         queryFn: async () => {
@@ -12,6 +14,23 @@ const Payroll = () => {
             return res.data;
         },
     });
+
+     // Mutation for handling payment
+     const { mutate: payUser } = useMutation
+     ({
+      mutationFn: async (userId) => {
+          const res = await axiosSecure.post(`/history/${userId}`, {
+              paymentDate: new Date().toISOString(), 
+
+          });
+          console.log(res.data)
+          return res.data;
+      },
+      onSuccess: () => {
+          toast.success('payment successfully')
+          refetch();
+      },
+  });
     return (
         <div>
             <h3 className='text-2xl mb-2'>Total payment: {users.length}</h3>
@@ -38,9 +57,9 @@ const Payroll = () => {
             <td>{user.month}</td>
             <td>{user.year}</td>
             <td>
-                <button className='btn'>pay</button>
+                <button  onClick={() => payUser(user._id)}  className='btn'>pay</button>
             </td>
-            <td></td>
+            <td>{user.paymentDate ? new Date(user.paymentDate).toLocaleDateString() : ''}</td>
           </tr>)
     }
      

@@ -96,7 +96,7 @@ const ManageUser = () => {
                                 <td>{user.salary}</td>
                                 <td>{user.account}</td>
                                 <td>
-                                    {user.verified === 'verified' ? <button className='btn'> <MdVerifiedUser className='text-2xl ' /> </button> :<button
+                                    {user.verified === 'verified' ? <button className='btn'> <MdVerifiedUser className='text-2xl text-green-600' /> </button> :<button
                                     onClick={()=>handleVerified(user)}
                                      className='btn '><MdOutlineCancel className='text-2xl text-red-600' /></button>}
                                 </td>
@@ -105,7 +105,7 @@ const ManageUser = () => {
                                <button
                                onClick={() => openModal(user)}
                                disabled={user?.verified !== 'verified'}
-                                className='btn'>pay <FaCcAmazonPay className='text-2xl' /></button>
+                                className='btn'> <FaCcAmazonPay className='text-2xl' /></button>
                                 </td>
                                
 

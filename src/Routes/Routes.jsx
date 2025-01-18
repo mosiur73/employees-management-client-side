@@ -18,6 +18,7 @@ import Payroll from "../Pages/DashBoard/Payroll/Payroll";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Progress from "../Pages/DashBoard/Progress/Progress";
 import AllEmployList from "../Pages/DashBoard/AllEmployList/AllEmployList";
+import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
 
 
  export const router = createBrowserRouter([
@@ -72,6 +73,10 @@ import AllEmployList from "../Pages/DashBoard/AllEmployList/AllEmployList";
         {
           path:"allEmployee",
           element:<AllEmployList></AllEmployList>
+        },
+        {
+          path:"paymentHistory",
+          element:<PaymentHistory></PaymentHistory>
         }
       ]
     }

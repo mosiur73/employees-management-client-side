@@ -3,6 +3,7 @@ import { FaEnvelope, FaHome, FaPaypal, FaSearch } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
 import { GiProgression } from 'react-icons/gi';
+import { MdWorkHistory } from 'react-icons/md';
 
 const Dashboard = () => {
     const [isAdmin]=useAdmin()
@@ -20,6 +21,11 @@ const Dashboard = () => {
                         <NavLink to="/dashboard/allEmployee">
                         <FaPaypal />
                             All-Employee-List</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/paymentHistory">
+                        <MdWorkHistory />
+                            Payment-History</NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/progress">
