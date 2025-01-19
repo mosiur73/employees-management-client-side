@@ -3,7 +3,7 @@ import React from 'react';
 const Card = ({ icon, title, description }) => {
     return (
         <div>
-             <div className="bg-white shadow-md rounded-lg p-6 w-64 h-80 flex flex-col items-start">
+             <div className="bg-white shadow-md rounded-lg p-6  flex flex-col items-center text-center">
       <div className="p-3 rounded-md bg-blue-100">
         {icon}
       </div>
@@ -17,6 +17,7 @@ const Card = ({ icon, title, description }) => {
       </a>
     </div>
         </div>
+
     );
 };
 

@@ -61,9 +61,9 @@ const Service = () => {
         <h1 className='text-3xl text-center font-bold'>PLATFORM FEATURES</h1>
         <p className='text-center text-xl font-bold pb-4'>Everything you need to create a high-performance culture</p>
         </div>
-         <div className=" lg:px-16 py-10 ">
+         <div className="px-4 lg:px-16 py-8 ">
        
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {cards.map((card, index) => (
         <Card
           key={index}
@@ -75,6 +75,7 @@ const Service = () => {
     </div>
   </div>
        </div>
+
     );
 };
 

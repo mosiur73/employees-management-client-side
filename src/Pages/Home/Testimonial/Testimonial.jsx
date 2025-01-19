@@ -105,45 +105,88 @@ const Testimonial = () => {
       
 
     return (
-        <div>
-            <section className="my-10 bg-gray-100 py-20 px-10">
-                <div className='pb-8'>
-                    <h1 className='text-2xl text-center text-orange-400'>What Our Clients Say</h1>
-                    <h1 className='text-3xl text-center text-orange-500'>Testimonials</h1>
-                </div>
+      //   <div>
+      //       <section className="my-10 bg-gray-100 py-20 px-10">
+      //           <div className='pb-8'>
+      //               <h1 className='text-2xl text-center text-orange-400'>What Our Clients Say</h1>
+      //               <h1 className='text-3xl text-center text-orange-500'>Testimonials</h1>
+      //           </div>
               
-                 <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
-        centeredSlides={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        {
-                        reviews.map(review => <SwiperSlide key={review._id}>
+      //            <Swiper
+      //   slidesPerView={4}
+      //   spaceBetween={30}
+      //   centeredSlides={true}
+      //   pagination={{
+      //     clickable: true,
+      //   }}
+      //   modules={[Pagination]}
+      //   className="mySwiper"
+      // >
+      //   {
+      //                   reviews.map(review => <SwiperSlide key={review._id}>
 
-                            <div className=' bg-white shadow-md rounded-lg p-6 w-80 h-52 flex flex-col items-center text-center'>
+      //                       <div className=' bg-white shadow-md rounded-lg p-6 w-80 h-52 flex flex-col items-center text-center'>
                                 
-                                <h3 className='text-2xl text-orange-500'>{review.name}</h3>
-                                <p className="text-gray-500 text-sm">{review.role}</p>
-                                <p>{review.details}</p>
-                                <Rating
-                                    style={{ maxWidth: 180 }}
-                                    value={review.rating}
-                                    readOnly
-                                />
-                            </div>
-                        </SwiperSlide>)
-                    }
+      //                           <h3 className='text-2xl text-orange-500'>{review.name}</h3>
+      //                           <p className="text-gray-500 text-sm">{review.role}</p>
+      //                           <p>{review.details}</p>
+      //                           <Rating
+      //                               style={{ maxWidth: 180 }}
+      //                               value={review.rating}
+      //                               readOnly
+      //                           />
+      //                       </div>
+      //                   </SwiperSlide>)
+      //               }
       
-      </Swiper>
+      // </Swiper>
 
 
-            </section>
-        </div>
+      //       </section>
+      //   </div>
+      <div>
+      <section className="my-10 bg-gray-100 py-20 px-4 md:px-10">
+          <div className='pb-8'>
+              <h1 className='text-lg md:text-2xl text-center text-orange-400'>What Our Clients Say</h1>
+              <h1 className='text-xl md:text-3xl text-center text-orange-500'>Testimonials</h1>
+          </div>
+        
+          <Swiper
+              slidesPerView={1}
+              spaceBetween={20}
+              breakpoints={{
+                  640: {
+                      slidesPerView: 2,
+                      spaceBetween: 20,
+                  },
+                  1024: {
+                      slidesPerView: 4,
+                      spaceBetween: 30,
+                  },
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Pagination]}
+              className="mySwiper"
+          >
+              {
+                  reviews.map(review => <SwiperSlide key={review._id}>
+                      <div className='bg-white shadow-md rounded-lg p-6 w-full h-auto flex flex-col items-center text-center'>
+                          <h3 className='text-lg md:text-2xl text-orange-500'>{review.name}</h3>
+                          <p className="text-gray-500 text-sm md:text-base">{review.role}</p>
+                          <p className="text-sm md:text-base">{review.details}</p>
+                          <Rating
+                              style={{ maxWidth: 180 }}
+                              value={review.rating}
+                              readOnly
+                          />
+                      </div>
+                  </SwiperSlide>)
+              }
+          </Swiper>
+      </section>
+  </div>
     );
 };
 
