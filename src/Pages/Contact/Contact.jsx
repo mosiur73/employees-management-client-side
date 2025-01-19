@@ -1,6 +1,27 @@
 import React from 'react';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
+  const axiosPublic=useAxiosPublic()
+
+  const handleSubmit= e=>{
+          e.preventDefault();
+          const form = e.target;
+         const email=form.email.value;
+         const message=form.message.value;
+         const data={email,message}
+         console.log(data);
+         
+          axiosPublic.post('/contact', data)
+              .then(() => {
+               
+                toast.success('Data submitted successfully');
+              })
+              .catch(() => {
+                  toast.error('Error submitting data');
+              });
+        }
     return (
         <div>
              <div className="bg-gray-50 min-h-screen py-12">
@@ -30,7 +51,7 @@ const Contact = () => {
       <div className="max-w-2xl mx-auto">
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-xl font-bold text-gray-800 mb-6">Send Us a Message</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             {/* Email Field */}
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
@@ -39,6 +60,7 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
+                name='email'
                 placeholder="Enter your email"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 required
@@ -53,6 +75,7 @@ const Contact = () => {
               <textarea
                 id="message"
                 rows="5"
+                name='message'
                 placeholder="Write your message here"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 required

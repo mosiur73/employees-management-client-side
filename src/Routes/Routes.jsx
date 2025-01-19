@@ -19,6 +19,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import Progress from "../Pages/DashBoard/Progress/Progress";
 import AllEmployList from "../Pages/DashBoard/AllEmployList/AllEmployList";
 import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
+import Message from "../Pages/DashBoard/Message/Message";
 
 
  export const router = createBrowserRouter([
@@ -77,6 +78,10 @@ import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
         {
           path:"paymentHistory",
           element:<PaymentHistory></PaymentHistory>
+        },
+        {
+          path:"contact",
+          element:<Message></Message>
         }
       ]
     }

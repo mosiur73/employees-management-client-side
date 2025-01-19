@@ -4,6 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
 import { GiProgression } from 'react-icons/gi';
 import { MdWorkHistory } from 'react-icons/md';
+import { FaMessage } from 'react-icons/fa6';
 
 const Dashboard = () => {
     const [isAdmin]=useAdmin()
@@ -26,6 +27,11 @@ const Dashboard = () => {
                         <NavLink to="/dashboard/paymentHistory">
                         <MdWorkHistory />
                             Payment-History</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/contact">
+                        <FaMessage />
+                            Message</NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/progress">
