@@ -9,8 +9,9 @@ import { FaMessage } from 'react-icons/fa6';
 const Dashboard = () => {
     const [isAdmin]=useAdmin()
     return (
-        <div className='flex pl-2'>
-            <div className='w-80 min-h-screen bg-gray-300 text-gray-800 font-bold '>
+        <div className='flex flex-col lg:flex-row pl-2 '>
+            <div className='  w-80 min-h-screen bg-gray-300 text-gray-800 font-bold '>
+            <h1 className='text-2xl  font-bold p-3'>Employee Management</h1>
             <ul className='menu p-4 space-y-6 text-2xl'>
            
                     <li>
@@ -57,7 +58,7 @@ const Dashboard = () => {
             </ul>
 
             </div>
-            <div className='flex-1 p-8'>
+            <div className='flex-1 p-8 '>
                 <Outlet></Outlet>
             </div>
         </div>

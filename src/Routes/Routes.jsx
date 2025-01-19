@@ -34,7 +34,7 @@ import Message from "../Pages/DashBoard/Message/Message";
         },
         {
           path:"/contact",
-          element:<PrivateRoute><Contact></Contact></PrivateRoute>
+          element:<Contact></Contact>
         }
       ]
     },
@@ -61,7 +61,7 @@ import Message from "../Pages/DashBoard/Message/Message";
         {
           path:"details/:id",
           element:<EmployDetails></EmployDetails>,
-          loader: ({params}) => fetch(`http://localhost:5000/users/${params.id}`)
+          loader: ({params}) => fetch(`https://employee-management-server-side.vercel.app/users/${params.id}`)
         },
         {
           path:"payroll",
