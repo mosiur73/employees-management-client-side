@@ -114,7 +114,7 @@ const WorkSheet = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user, index) => (
+                        {users.slice().reverse().map((user, index) => (
                             <tr key={user._id}>
                                 <td>{index + 1}</td>
                                 <td>{user.tasks}</td>

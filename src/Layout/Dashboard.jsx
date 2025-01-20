@@ -13,8 +13,10 @@ const Dashboard = () => {
             <div className='  w-80 min-h-screen bg-gray-300 text-gray-800 font-bold '>
             <h1 className='text-2xl  font-bold p-3'>Employee Management</h1>
             <ul className='menu p-4 space-y-6 text-2xl'>
-           
-                    <li>
+                {
+                    isAdmin ?
+                     <>
+                       <li>
                         <NavLink to="/dashboard/payroll">
                         <FaPaypal />
                             Payroll</NavLink>
@@ -25,15 +27,27 @@ const Dashboard = () => {
                             All-Employee-List</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/dashboard/paymentHistory">
-                        <MdWorkHistory />
-                            Payment-History</NavLink>
-                    </li>
-                    <li>
                         <NavLink to="/dashboard/contact">
                         <FaMessage />
                             Message</NavLink>
                     </li>
+
+                     </>  
+                    :
+                     <> 
+
+                     <li>
+                        <NavLink to="/dashboard/manageUser">
+                            <FaEnvelope></FaEnvelope>
+                            Employee-List</NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/dashboard/paymentHistory">
+                        <MdWorkHistory />
+                            Payment-History</NavLink>
+                    </li>
+                   
                     <li>
                         <NavLink to="/dashboard/progress">
                         <GiProgression />
@@ -44,11 +58,10 @@ const Dashboard = () => {
                             <FaSearch></FaSearch>
                             WorkSheet</NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/dashboard/manageUser">
-                            <FaEnvelope></FaEnvelope>
-                            Employee-List</NavLink>
-                    </li>
+                    </>
+                }
+           
+          
                     <div className='divider'></div>
                     <li>
                         <NavLink to="/">

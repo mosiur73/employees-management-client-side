@@ -58,12 +58,15 @@ const AllEmployList = () => {
     });
   };
 
+
+  
   return (
     <div>
-      <h2>Total Verified Users: {users.length}</h2>
+      <h2 className='text-3xl'>Total Verified Users: {users.length}</h2>
 
-      {/* Toggle Button */}
-      <button
+     <div className='flex justify-end'>
+       {/* Toggle Button */}
+       <button
         className="btn btn-primary mb-4"
         onClick={() =>
           setViewMode(viewMode === 'table' ? 'grid' : 'table')
@@ -71,6 +74,7 @@ const AllEmployList = () => {
       >
         Toggle to {viewMode === 'table' ? 'Card Grid View' : 'Table View'}
       </button>
+     </div>
 
       {viewMode === 'table' ? (
         // Table View
@@ -101,9 +105,16 @@ const AllEmployList = () => {
                     </button>
                   </th>
                   <th>
-                    <button className="btn">
-                      <FaFire className="text-red-600 text-2xl" />
+                  {user.fired ? (
+                    <span className="text-red-500 font-bold">Fired</span>
+                  ) : (
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleFireUser(user)}
+                    >
+                      Fire <FaFire />
                     </button>
+                  )}
                   </th>
                   <th>
                     {user.role === 'Hr' ? (

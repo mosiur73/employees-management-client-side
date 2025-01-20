@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { toast } from 'react-toastify';
 import img from '../../../assets/logo/images.png'
+import { FaUserCircle } from 'react-icons/fa';
 
 
 const Navbar = () => {
@@ -66,8 +67,8 @@ const Navbar = () => {
          {user ? (
           <div className="relative">
             {/* User Photo */}
-            <img
-              src={user.photoURL || 'https://via.placeholder.com/40'} // Default placeholder
+            <img title={user.password}
+              src={user.photoURL || <FaUserCircle />} // Default placeholder
               alt="User"
               className="w-10 h-10 rounded-full cursor-pointer"
               onClick={toggleDropdown}

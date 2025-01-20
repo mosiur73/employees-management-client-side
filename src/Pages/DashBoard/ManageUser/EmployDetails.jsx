@@ -5,6 +5,8 @@ import { AuthContext } from '../../../Providers/AuthProvider';
 const EmployDetails = () => {
   const { user } = useContext(AuthContext);
   const userData = useLoaderData();
+  console.log(userData);
+  
 
   const {
     name,
@@ -59,7 +61,7 @@ const EmployDetails = () => {
           </div>
 
           <div className="flex flex-col bg-gray-50 p-4 rounded-lg shadow-md">
-            <span className="text-gray-500 font-semibold">Account:</span>
+            <span className="text-gray-500 font-semibold">Account Number:</span>
             <span className="text-gray-700">{account}</span>
           </div>
         </div>
