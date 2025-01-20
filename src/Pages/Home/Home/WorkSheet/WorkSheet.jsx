@@ -35,12 +35,14 @@ const WorkSheet = () => {
     
 
     const { data: users = [], refetch } = useQuery({
+
         queryKey: ['employ'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/employee');
+            const res = await axiosPublic.get(`/employee?email=${user.email}`);
             return res.data;
         },
     });
+
 
     const handleUpdateUser = async (e) => {
         e.preventDefault();

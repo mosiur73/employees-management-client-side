@@ -44,7 +44,7 @@ const ManageUser = () => {
             const year = form.year.value;
             const salary = form.salary.value;
             
-            const data = { month,year,salary,name:selectedUser.name };
+            const data = { month,year,salary,name:selectedUser.name,paymentDate: new Date().toISOString() };
         
             axiosSecure.post(`/payroll`, data)
                 .then(() => {
