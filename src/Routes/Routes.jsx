@@ -22,6 +22,7 @@ import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
 import Message from "../Pages/DashBoard/Message/Message";
 
 
+
  export const router = createBrowserRouter([
     {
       path: "/",
@@ -82,7 +83,9 @@ import Message from "../Pages/DashBoard/Message/Message";
         {
           path:"contact",
           element:<Message></Message>
-        }
+        },
+       
+
       ]
     }
 

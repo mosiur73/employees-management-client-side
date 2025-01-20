@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { FcPaid } from 'react-icons/fc';
+import { Link } from 'react-router-dom';
 
 const Payroll = () => {
     const axiosSecure = useAxiosSecure();
@@ -15,16 +16,18 @@ const Payroll = () => {
             return res.data;
         },
     });
-
+console.log(users)
     const [paidUsers, setPaidUsers] = useState({});
 
     const payUser = (user) => {
         const month = user.month;
         const year = user.year;
         const salary = user.salary;
+        const email=user.email;
 
         const data = {
             month,
+            email,
             year,
             salary,
             paymentDate: new Date().toISOString(),
@@ -78,14 +81,16 @@ const Payroll = () => {
                                     <td>{user.month}</td>
                                     <td>{user.year}</td>
                                     <td>
+                                     
                                         <button 
                                             onClick={() => payUser(user)}  
                                             className='btn' 
-                                            disabled={paidUsers[user._id]} // Disable button if already paid
+                                            disabled={paidUsers[user._id]} 
                                         >
                                             {paidUsers[user._id] ? 'Paid' : 'Pay'}
                                         {paidUsers[user._id] && <FcPaid />}
                                         </button>
+                                        
                                     </td>
                                     <td>{paidUsers[user._id] ? new Date().toLocaleString() : 'Not Paid Yet'}</td>
                                 </tr>

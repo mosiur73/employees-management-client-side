@@ -24,9 +24,9 @@ const Navbar = () => {
 
 
   const links = < >
-  <li><NavLink to="/">Home</NavLink></li>
-  <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-  <li><NavLink to="/contact">Contact</NavLink></li>
+  <li><NavLink className="text-2xl " to="/">Home</NavLink></li>
+  <li><NavLink className="text-2xl " to="/dashboard">Dashboard</NavLink></li>
+  <li><NavLink className="text-2xl " to="/contact">Contact</NavLink></li>
  
   
     
@@ -67,7 +67,7 @@ const Navbar = () => {
          {user ? (
           <div className="relative">
             {/* User Photo */}
-            <img title={user.password}
+            <img title={user.displayName}
               src={user.photoURL || <FaUserCircle />} // Default placeholder
               alt="User"
               className="w-10 h-10 rounded-full cursor-pointer"
