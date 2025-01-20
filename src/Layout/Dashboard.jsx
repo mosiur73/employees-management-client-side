@@ -11,11 +11,9 @@ const Dashboard = () => {
     return (
         <div className='flex flex-col lg:flex-row pl-2 '>
             <div className='  w-80 min-h-screen bg-gray-300 text-gray-800 font-bold '>
-            <h1 className='text-2xl  font-bold p-3'>Employee Management</h1>
+            <h1 className='text-3xl text-center font-bold p-3'>Dashboard</h1>
             <ul className='menu p-4 space-y-6 text-2xl'>
-                {
-                    isAdmin ?
-                     <>
+                
                        <li>
                         <NavLink to="/dashboard/payroll">
                         <FaPaypal />
@@ -32,9 +30,7 @@ const Dashboard = () => {
                             Message</NavLink>
                     </li>
 
-                     </>  
-                    :
-                     <> 
+                    
 
                      <li>
                         <NavLink to="/dashboard/manageUser">
@@ -58,8 +54,7 @@ const Dashboard = () => {
                             <FaSearch></FaSearch>
                             WorkSheet</NavLink>
                     </li>
-                    </>
-                }
+                  
            
           
                     <div className='divider'></div>

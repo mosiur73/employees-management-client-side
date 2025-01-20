@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { FaUser } from 'react-icons/fa';
 
 const EmployDetails = () => {
   const { user } = useContext(AuthContext);
@@ -25,7 +26,7 @@ const EmployDetails = () => {
         {/* Profile Image */}
         <div className="flex justify-center mb-6">
           <img
-            src={photoUrl}
+            src={photoUrl }
             alt={`${name}'s profile`}
             className="w-32 h-32 rounded-full object-cover shadow-md"
           />

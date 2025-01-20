@@ -7,13 +7,16 @@ import { IoMdCheckmark } from 'react-icons/io';
 import { toast } from 'react-toastify';
 import { LuBrackets } from 'react-icons/lu';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const AllEmployList = () => {
   const axiosSecure = useAxiosSecure();
-  const [selectedUser, setSelectedUser] = useState(null); // State for the selected user
-  const [newSalary, setNewSalary] = useState(''); // State for new salary input
-  const [showPopup, setShowPopup] = useState(false); // State to control popup visibility
-  const [viewMode, setViewMode] = useState('table'); // State to toggle views
+  const axiosPublic = useAxiosPublic()
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [newSalary, setNewSalary] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+  const [viewMode, setViewMode] = useState('table');
+  const [firedUsers, setFiredUsers] = useState([]);
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ['verifiedUsers'],
@@ -30,6 +33,11 @@ const AllEmployList = () => {
   };
 
   const handleUpdateSalary = async () => {
+    if (parseFloat(newSalary) <= parseFloat(selectedUser.salary)) {
+      toast.error('Salary can only be increased.');
+      return;
+    }
+  
     try {
       await axiosSecure.patch(`/update-salary/${selectedUser._id}`, {
         salary: newSalary,
@@ -44,37 +52,44 @@ const AllEmployList = () => {
   };
 
   const handleMakeHr = (user) => {
-    axiosSecure.patch(`/users/hr/${user._id}`).then((res) => {
-      if (res.data.modifiedCount > 0) {
-        refetch();
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: `${user.name} is now HR!`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
+    axiosSecure.patch(`/users/hr/${user._id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: `${user.name} is now HR!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
 
-  
+  const handleFireUser = (userId) => {
+    setFiredUsers((prev) => [...prev, userId]);
+    toast.info('User has been fired.');
+  };
+ 
+
+
   return (
     <div>
       <h2 className='text-3xl'>Total Verified Users: {users.length}</h2>
 
-     <div className='flex justify-end'>
-       {/* Toggle Button */}
-       <button
-        className="btn btn-primary mb-4"
-        onClick={() =>
-          setViewMode(viewMode === 'table' ? 'grid' : 'table')
-        }
-      >
-        Toggle to {viewMode === 'table' ? 'Card Grid View' : 'Table View'}
-      </button>
-     </div>
+      <div className='flex justify-end'>
+        {/* Toggle Button */}
+        <button
+          className="btn btn-primary mb-4"
+          onClick={() =>
+            setViewMode(viewMode === 'table' ? 'grid' : 'table')
+          }
+        >
+          Toggle to {viewMode === 'table' ? 'Card Grid View' : 'Table View'}
+        </button>
+      </div>
 
       {viewMode === 'table' ? (
         // Table View
@@ -105,16 +120,16 @@ const AllEmployList = () => {
                     </button>
                   </th>
                   <th>
-                  {user.fired ? (
-                    <span className="text-red-500 font-bold">Fired</span>
-                  ) : (
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleFireUser(user)}
-                    >
-                      Fire <FaFire />
-                    </button>
-                  )}
+                  {firedUsers.includes(user._id) ? (
+                      <span className="text-red-500 font-bold">Fired</span>
+                    ) : (
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => handleFireUser(user._id)}
+                      >
+                        Fire <FaFire className="text-red-600 text-2xl" />
+                      </button>
+                    )}
                   </th>
                   <th>
                     {user.role === 'Hr' ? (
@@ -195,18 +210,20 @@ const AllEmployList = () => {
               placeholder="Enter new salary"
             />
             <div className="flex justify-end gap-4">
-              <button
-                className="btn btn-primary"
-                onClick={handleUpdateSalary}
-              >
-                Update
-              </button>
-              <button
+            <button
                 className="btn btn-secondary"
                 onClick={() => setShowPopup(false)}
               >
                 Cancel
               </button>
+              <button
+                className="btn btn-primary"
+                onClick={handleUpdateSalary}
+                disabled={parseFloat(newSalary) <= parseFloat(selectedUser?.salary)}
+              >
+                Update
+              </button>
+              
             </div>
           </div>
         </div>
