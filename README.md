@@ -1,5 +1,6 @@
-<<<<<<< HEAD
-=======
+Employee Management System
+🚀 Overview
+This is a back-end project for managing employee data and performance reviews. The system stores employee information in MongoDB and provides APIs to interact with it. You can test the APIs using Postman.
 
 
 <h1 align="left">Hey !👋  Nice to see you.</h1>
