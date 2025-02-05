@@ -3,14 +3,16 @@
 ## 🚀 Overview  
 This is a back-end project for managing employee data and performance reviews. The system stores employee information in MongoDB and provides APIs to interact with it. You can test the APIs using Postman.
 
-## 📸 Screenshot  
-*(Include a screenshot of your project if possible.)*
+
 
 ## 🛠 Technologies Used  
+- **javascript**  
+- **React.js**  
+- **tailwind**  
 - **Node.js**  
 - **Express.js**  
 - **MongoDB**  
-- **Postman** (for API testing)
+
 
 ## ✨ Features  
 - Employee data management (add, update, delete, view)  
