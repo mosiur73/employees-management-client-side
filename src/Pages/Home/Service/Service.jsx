@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaCalendar, FaEnvelopeOpenText, FaUser, FaUsers } from 'react-icons/fa';
 import Card from './Card';
 import { AiFillDollarCircle } from 'react-icons/ai';
 import { GiProgression } from 'react-icons/gi';
+import { AuthContext } from '../../../Providers/AuthProvider';
 
 const Service = () => {
+  const { theme } = useContext(AuthContext)
     const cards = [
         {
           icon: <FaUsers className='text-2xl' />,
@@ -56,14 +58,14 @@ const Service = () => {
           },
       ];
     return (
-       <div className='bg-gray-100 mt-16'>
+       <div className='bg-gray-100 mt-20'>
         <div className='py-6'>
         <h1 className='text-3xl text-center text-black font-bold'>PLATFORM FEATURES</h1>
         <p className='text-center text-black text-xl font-bold pb-4'>Everything you need to create a high-performance culture</p>
         </div>
          <div className="px-4  py-4 ">
        
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6`}>
       {cards.map((card, index) => (
         <Card
           key={index}

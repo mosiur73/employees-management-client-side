@@ -24,7 +24,7 @@ const Contact = () => {
         }
     return (
         <div>
-             <div className="bg-gray-50 min-h-screen py-12">
+             <div className="bg-gray-50 min-h-screen py-12 mt-16">
       {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-3xl font-bold text-gray-800">Contact Us</h1>

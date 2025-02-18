@@ -2,7 +2,7 @@ import React from "react";
 
 const DownloadApp = () => {
   return (
-    <div className="bg-red-600 text-white flex flex-col items-center justify-center  py-16 text-center">
+    <div className="bg-orange-500 text-white flex flex-col items-center justify-center  py-16 text-center">
       {/* Heading */}
       <h2 className="text-3xl font-bold">
         Download App For <span className="text-gray-200">iPhone & Android</span> Now!
