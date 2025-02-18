@@ -3,12 +3,14 @@ import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../firebase/firebase.config';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 
+
  export const AuthContext =createContext(null)
  const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [theme, setTheme] = useState('light');
   const axiosPublic=useAxiosPublic()
 
   const createUser = (email, password) => {
@@ -64,6 +66,14 @@ const AuthProvider = ({children}) => {
     }
 }, [])
 
+ // Toggle between dark and light themes
+ const toggleTheme = () => {
+  const newTheme = theme === 'light' ? 'dark' : 'light';
+  setTheme(newTheme);
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme); 
+};
+
     const authInfo={
         user,
         setUser,
@@ -72,7 +82,9 @@ const AuthProvider = ({children}) => {
         signIn,
         signInWithGoogle,
         signOutUser,
-        updateUserProfile
+        updateUserProfile,
+        toggleTheme,
+        theme
 
     }
     return (

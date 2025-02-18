@@ -6,6 +6,7 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './Routes/Routes.jsx'
 import AuthProvider from './Providers/AuthProvider.jsx'
 import { HelmetProvider } from 'react-helmet-async'
+import './component/Style/Style.css'
 // import "react-toastify/ReactToastify.min.css";
 import {
   QueryClient,

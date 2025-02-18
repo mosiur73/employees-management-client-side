@@ -7,7 +7,7 @@ import { FaUserCircle } from 'react-icons/fa';
 
 
 const Navbar = () => {
-  const {signOutUser,user}=useContext(AuthContext)
+  const {signOutUser,user,theme,toggleTheme}=useContext(AuthContext)
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const handleSignOut = async () => {
@@ -66,6 +66,11 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
+        <div className='navbar'>
+          <button onClick={toggleTheme} className="theme-toggle-btn  bg-gray-500">
+            {theme === 'light' ? '🌙 ' : '☀️ '}
+          </button>
+        </div>
          {user ? (
           <div className="relative">
             {/* User Photo */}
