@@ -24,15 +24,15 @@ const Navbar = () => {
 
 
   const links = < >
-  <li><NavLink className="text-2xl " to="/">Home</NavLink></li>
-  <li><NavLink className="text-2xl " to="/dashboard">Dashboard</NavLink></li>
-  <li><NavLink className="text-2xl " to="/contact">Contact</NavLink></li>
+  <li><NavLink className="text-xl font-bold " to="/">Home</NavLink></li>
+  <li><NavLink className="text-xl font-bold" to="/dashboard">Dashboard</NavLink></li>
+  <li><NavLink className="text-xl font-bold " to="/contact">Contact</NavLink></li>
  
   
     
 </>
     return (
-        <div className="navbar fixed top-0 z-10 left-0 right-0 bg-base-200">
+        <div className="navbar fixed top-0 z-10 left-0 right-0 pr-6 bg-base-200">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -76,6 +76,9 @@ const Navbar = () => {
             {/* Dropdown */}
             {dropdownVisible && (
               <div className="absolute right-0 mt-6 w-40 h-40 bg-white shadow-lg rounded-lg p-2 z-10">
+             
+               
+               <button className="btn btn-ghost mb-4" >Update Profile</button>
                 <button
                   onClick={handleSignOut}
                   className="btn btn-info w-full text-center">

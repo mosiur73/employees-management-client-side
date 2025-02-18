@@ -1,6 +1,7 @@
 import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 
 const Message = () => {
     const axiosSecure=useAxiosSecure()
@@ -15,7 +16,11 @@ const Message = () => {
     });
    
     return (
+      
         <div className="bg-gray-50 min-h-screen py-12 px-6">
+          <Helmet>
+                          <title>Emplyee-Message</title>
+                      </Helmet>
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
           Total Messages: {contacts.length}
         </h2>

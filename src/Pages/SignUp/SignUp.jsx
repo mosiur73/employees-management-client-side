@@ -102,6 +102,7 @@ if (!passwordRegex.test(password)) {
                 type='text'
                 name='name'
                 id='name'
+                required
                 placeholder='Enter Your Name Here'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900'
                 data-temp-mail-org='0'

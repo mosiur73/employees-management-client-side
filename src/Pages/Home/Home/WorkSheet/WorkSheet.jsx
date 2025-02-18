@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { FaRegEdit, FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../../Providers/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const WorkSheet = () => {
     const [date, setDate] = useState(new Date());
@@ -77,6 +78,9 @@ const WorkSheet = () => {
 
     return (
         <div>
+            <Helmet>
+                            <title>Emplyee/worksheet</title>
+                        </Helmet>
             <h1 className="text-2xl font-bold mb-4">Task Tracker</h1>
             <form
                 onSubmit={handleSubmit}

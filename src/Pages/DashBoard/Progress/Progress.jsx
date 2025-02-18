@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 
 const Progress = () => {
     const axiosSecure = useAxiosSecure();
@@ -29,6 +30,9 @@ const Progress = () => {
 
     return (
         <div>
+                       <Helmet>
+                            <title>Emplyee/Progress</title>
+                        </Helmet>
             <h3 className="text-2xl">Progress: {filteredEmployees.length}</h3>
 
             {/* Filters */}

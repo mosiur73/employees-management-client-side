@@ -6,6 +6,7 @@ import { FaCcAmazonPay } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 
 const ManageUser = () => {
@@ -70,6 +71,9 @@ const ManageUser = () => {
 
     return (
         <div>
+                        <Helmet>
+                            <title>Emplyee-Emplyee-list</title>
+                        </Helmet>
             <h1 className='text-center text-2xl text-[rgb(209,160,84)]'>Employee-List</h1>
             <h2 className='text-2xl'>Payroll User :{users.length} </h2>
             <div className="overflow-x-auto">

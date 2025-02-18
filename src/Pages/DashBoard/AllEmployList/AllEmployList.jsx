@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { LuBrackets } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet-async';
 
 const AllEmployList = () => {
   const axiosSecure = useAxiosSecure();
@@ -77,6 +78,9 @@ const AllEmployList = () => {
 
   return (
     <div>
+                <Helmet>
+                      <title>Emplyee/All-Emplyee-list</title>
+                  </Helmet>
       <h2 className='text-3xl'>Total Verified Users: {users.length}</h2>
 
       <div className='flex justify-end'>

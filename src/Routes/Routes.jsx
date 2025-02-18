@@ -20,6 +20,7 @@ import Progress from "../Pages/DashBoard/Progress/Progress";
 import AllEmployList from "../Pages/DashBoard/AllEmployList/AllEmployList";
 import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
 import Message from "../Pages/DashBoard/Message/Message";
+import UpdateProfile from "../Pages/Shared/Navbar/UpdateProfile";
 
 
 
@@ -36,6 +37,10 @@ import Message from "../Pages/DashBoard/Message/Message";
         {
           path:"/contact",
           element:<Contact></Contact>
+        },
+        {
+          path:"/updateProfile",
+          element:<UpdateProfile></UpdateProfile>
         }
       ]
     },
@@ -47,6 +52,7 @@ import Message from "../Pages/DashBoard/Message/Message";
         path:"/login",
         element:<Login></Login>
     },
+
     {
       path:"dashboard",
       element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
