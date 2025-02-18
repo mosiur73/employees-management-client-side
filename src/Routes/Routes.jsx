@@ -21,6 +21,8 @@ import AllEmployList from "../Pages/DashBoard/AllEmployList/AllEmployList";
 import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
 import Message from "../Pages/DashBoard/Message/Message";
 import UpdateProfile from "../Pages/Shared/Navbar/UpdateProfile";
+import Service from "../Pages/Home/Service/Service";
+import FaqPage from "../Pages/Home/FaqPage/FaqPage";
 
 
 
@@ -41,6 +43,14 @@ import UpdateProfile from "../Pages/Shared/Navbar/UpdateProfile";
         {
           path:"/updateProfile",
           element:<UpdateProfile></UpdateProfile>
+        },
+        {
+          path:"/features",
+          element:<Service></Service>
+        },
+        {
+          path:"faq",
+          element:<FaqPage></FaqPage>
         }
       ]
     },

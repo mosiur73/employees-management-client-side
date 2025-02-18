@@ -31,7 +31,7 @@ const FaqPage = () => {
   };
 
   return (
-    <div className=" p-6 bg-white shadow-lg rounded-lg mt-10">
+    <div className=" p-6 bg-white shadow-lg rounded-lg mt-16">
       <h2 className="text-3xl font-bold text-center">
         <span className="text-orange-500">Employee</span> Management FAQ
       </h2>

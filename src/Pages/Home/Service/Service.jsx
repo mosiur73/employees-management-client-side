@@ -56,7 +56,7 @@ const Service = () => {
           },
       ];
     return (
-       <div className='bg-gray-100'>
+       <div className='bg-gray-100 mt-16'>
         <div className='py-6'>
         <h1 className='text-3xl text-center font-bold'>PLATFORM FEATURES</h1>
         <p className='text-center text-xl font-bold pb-4'>Everything you need to create a high-performance culture</p>

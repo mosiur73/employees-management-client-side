@@ -27,6 +27,8 @@ const Navbar = () => {
   <li><NavLink className="text-xl font-bold " to="/">Home</NavLink></li>
   <li><NavLink className="text-xl font-bold" to="/dashboard">Dashboard</NavLink></li>
   <li><NavLink className="text-xl font-bold " to="/contact">Contact</NavLink></li>
+  <li><NavLink className="text-xl font-bold " to="/features">Features</NavLink></li>
+  <li><NavLink className="text-xl font-bold " to="/faq">Faq</NavLink></li>
  
   
     
