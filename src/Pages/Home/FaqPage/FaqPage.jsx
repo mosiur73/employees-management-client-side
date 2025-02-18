@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const faqs = [
   { 
@@ -25,29 +26,38 @@ const faqs = [
 
 const FaqPage = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const { theme } = useContext(AuthContext)
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className=" p-6 bg-white shadow-lg rounded-lg mt-16">
+   
+    <div className={`p-6 shadow-lg rounded-lg mt-16 
+      ${theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}
+    >
       <h2 className="text-3xl font-bold text-center">
         <span className="text-orange-500">Employee</span> Management FAQ
       </h2>
-      <p className="text-center text-gray-500 mt-2">Common questions about managing employees.</p>
+      <p className={`text-center mt-2 ${theme === "dark" ? "text-gray-300" : "text-gray-500"}`}>
+        Common questions about managing employees.
+      </p>
       <div className="mt-6">
         {faqs.map((faq, index) => (
-          <div key={index} className="border-b">
+          <div key={index} className={`border-b ${theme === "dark" ? "border-gray-700" : "border-gray-300"}`}>
             <button
-              className="w-full flex justify-between items-center py-4 px-6 text-lg font-medium focus:outline-none"
+              className={`w-full flex justify-between items-center py-4 px-6 text-lg font-medium focus:outline-none 
+                ${theme === "dark" ? "text-white" : "text-gray-900"}`}
               onClick={() => toggleFAQ(index)}
             >
               {faq.question}
               <span>{openIndex === index ? "▲" : "▼"}</span>
             </button>
             {openIndex === index && (
-              <div className="px-6 pb-4 text-gray-600">{faq.answer}</div>
+              <div className={`px-6 pb-4 ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}>
+                {faq.answer}
+              </div>
             )}
           </div>
         ))}

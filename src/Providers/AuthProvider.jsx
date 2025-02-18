@@ -10,8 +10,8 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [theme, setTheme] = useState('light');
   const axiosPublic=useAxiosPublic()
+  const [theme, setTheme] = useState('light');
 
   const createUser = (email, password) => {
     setLoading(true)
@@ -66,13 +66,23 @@ const AuthProvider = ({children}) => {
     }
 }, [])
 
- // Toggle between dark and light themes
- const toggleTheme = () => {
+// Check localStorage for theme preference on mount
+useEffect(() => {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  setTheme(savedTheme);
+  document.documentElement.setAttribute('data-theme', savedTheme); 
+}, []);
+
+// Toggle between dark and light themes
+const toggleTheme = () => {
   const newTheme = theme === 'light' ? 'dark' : 'light';
   setTheme(newTheme);
   document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme); 
+  localStorage.setItem('theme', newTheme); // Save preference to localStorage
 };
+
+
+
 
     const authInfo={
         user,
@@ -85,6 +95,7 @@ const AuthProvider = ({children}) => {
         updateUserProfile,
         toggleTheme,
         theme
+       
 
     }
     return (

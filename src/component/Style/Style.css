@@ -19,15 +19,15 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    /* background-color: gray; */
-    
+    background-color: var(--background-color);
+    /* border-bottom: 1px solid var(--text-color); */
 }
 
 .theme-toggle-btn {
     padding: 0.5rem 1rem;
     border: none;
     cursor: pointer;
-    /* background-color: var(--text-color); */
+    background-color: var(--text-color);
     color: var(--background-color);
     border-radius: 5px;
     font-size: 1rem;
