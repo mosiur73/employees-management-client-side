@@ -2,6 +2,11 @@
 
 ## 🚀 Overview  
 This is a back-end project for managing employee data and performance reviews. The system stores employee information in MongoDB and provides APIs to interact with it. You can test the APIs using Postman.
+User name : Admin<br>
+email :admin.test@gmail.com<br>
+password : Aa@123<br>
+Live Url  : https://final-assignment-573ef.web.app/ </p>
+
 
 
 
