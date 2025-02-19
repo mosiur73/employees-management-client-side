@@ -1,92 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query'; // Make sure you're using the correct query package
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import useAxiosSecure from '../../../hooks/useAxiosSecure'; // Assuming this is another custom hook
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Providers/AuthProvider';
 
 const UpdateProfile = () => {
-    const axiosPublic = useAxiosPublic();
-    const axiosSecure = useAxiosSecure();
+    const {user}=useContext(AuthContext)
 
-    const [userData, setUserData] = useState({
-        name: '',
-        email: '',
-        // Add any other fields for user data you need to update
-    });
+    if (!user) {
+        return <div className="text-center mt-10 text-xl">Loading profile...</div>;
+    }
 
-    const { data: users = [], isLoading, isError, refetch } = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            const res = await axiosSecure.get('/users');
-            return res.data;
-        },
-    });
-
-    // Handle form input changes
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setUserData((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
-    };
-
-    // Handle form submission to update user data
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            // Update the user profile
-            const res = await axiosSecure.put('/users/update', userData);
-            console.log('Profile updated successfully:', res.data);
-            refetch(); // Refetch users after update
-        } catch (err) {
-            console.error('Error updating profile:', err);
-        }
-    };
-
-    useEffect(() => {
-        if (users.length > 0) {
-            // Pre-fill form with current user data
-            const currentUser = users[0]; // assuming the first user is the one to update
-            setUserData({
-                name: currentUser.name || '',
-                email: currentUser.email || '',
-            });
-        }
-    }, [users]);
-
-    if (isLoading) return <div>Loading...</div>;
-    if (isError) return <div>Error loading user data</div>;
-
+   
     return (
-        <div className="update-profile-container">
-            <h2>Update Profile</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={userData.name}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={userData.email}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                {/* Add more fields as necessary */}
-                <button type="submit">Update Profile</button>
-            </form>
+        <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <h2 className="text-3xl font-bold text-center mb-6">Profile</h2>
+        <div className="flex flex-col items-center space-y-4">
+            <img src={user.photoURL } alt="Profile" className="w-32 h-32 rounded-full border-2 border-gray-300" />
+            <h3 className="text-2xl font-semibold">{user.displayName}</h3>
+            <p className="text-gray-600">{user.position} - {user.department}</p>
         </div>
+        <div className="mt-6 space-y-4">
+            <div className="bg-gray-100 p-4 rounded-lg">
+                <strong>Email:</strong> {user.email}
+            </div>
+            
+        </div>
+    </div>
     );
 };
 

@@ -56,7 +56,7 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <a className="pl-3 text-xl">
           <img className='w-14' src={img} alt="Logo" />
         </a>
       </div>

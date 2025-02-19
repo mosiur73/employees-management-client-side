@@ -12,7 +12,7 @@ import DownloadApp from '../DownloadApp/DownloadApp';
 const Home = () => {
     
     return (
-        <div className='space-y-16'>
+        <div className='space-y-8'>
             <Helmet>
                             <title>Emplyee-Home</title>
                         </Helmet>

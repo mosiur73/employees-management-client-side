@@ -23,6 +23,8 @@ import Message from "../Pages/DashBoard/Message/Message";
 import UpdateProfile from "../Pages/Shared/Navbar/UpdateProfile";
 import Service from "../Pages/Home/Service/Service";
 import FaqPage from "../Pages/Home/FaqPage/FaqPage";
+import Profile from "../Pages/DashBoard/Profile/Profile";
+import Overview from "../Pages/DashBoard/Overview/Overview";
 
 
 
@@ -40,6 +42,7 @@ import FaqPage from "../Pages/Home/FaqPage/FaqPage";
           path:"/contact",
           element:<Contact></Contact>
         },
+       
         {
           path:"/updateProfile",
           element:<UpdateProfile></UpdateProfile>
@@ -100,6 +103,14 @@ import FaqPage from "../Pages/Home/FaqPage/FaqPage";
           path:"contact",
           element:<Message></Message>
         },
+        {
+          path:"profile",
+          element:<Profile></Profile>
+        },
+        {
+          path: "overview",
+          element: <Overview></Overview>
+        }
        
 
       ]

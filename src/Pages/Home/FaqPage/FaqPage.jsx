@@ -34,7 +34,7 @@ const FaqPage = () => {
 
   return (
    
-    <div className={`p-6 shadow-lg rounded-lg mt-20s 
+    <div className={`p-6 shadow-lg rounded-lg mt-14 
       ${theme === "dark" ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}
     >
       <h2 className="text-3xl font-bold text-center">

@@ -1,4 +1,5 @@
 import React from "react";
+import { FaGooglePlay } from "react-icons/fa";
 
 const DownloadApp = () => {
   return (
@@ -18,13 +19,11 @@ const DownloadApp = () => {
             className="h-12"
           />
         </a>
-        <a href="#" className="block">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-            alt="Google Play"
-            className="h-12"
-          />
+       <div className="bg-black px-8">
+       <a href="#" className="block py-4 text-3xl">
+        <FaGooglePlay />
         </a>
+       </div>
       </div>
     </div>
   );
