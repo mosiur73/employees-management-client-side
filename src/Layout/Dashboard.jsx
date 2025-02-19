@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaEnvelope, FaHome, FaPaypal, FaSearch, FaUser } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
@@ -6,7 +6,10 @@ import { GiProgression } from 'react-icons/gi';
 import { MdWorkHistory, MdDashboard } from 'react-icons/md';
 import { FaMessage } from 'react-icons/fa6';
 
+import { AuthContext } from '../Providers/AuthProvider';
+
 const Dashboard = () => {
+    const {user}= useContext(AuthContext)
     const [isAdmin] = useAdmin();
 
     // Define menu items based on roles
@@ -56,10 +59,35 @@ const Dashboard = () => {
                     </li>
                 </ul>
             </div>
-            {/* Main Content */}
-            <div className="flex-1 p-8 ml-80">
-                <Outlet />
-            </div>
+             {/* Main Content */}
+             <main className="flex-1 p-8 ml-80 bg-gray-100 min-h-screen">
+    {/* Top Navigation Bar */}
+    <div className="bg-white p-4 shadow-md rounded-lg flex justify-between items-center mb-6">
+        
+        {/* Left Side: Search Bar */}
+        <div className="flex items-center bg-gray-100 px-4 py-2 rounded-lg w-1/3 border border-gray-300 focus-within:ring-2 focus-within:ring-blue-500">
+            <FaSearch className="text-gray-500 mr-2" />
+            <input
+                type="text"
+                placeholder="Search here..."
+                className="w-full bg-transparent focus:outline-none"
+            />
+        </div>
+
+        {/* Right Side: Welcome Message & Profile */}
+        <div className="flex items-center space-x-4">
+            <span className="text-gray-700 text-lg font-medium">Welcome, <span className="text-blue-600">Admin</span></span>
+            <img 
+                src={user.photoURL} 
+                alt="Profile" 
+                className="w-12 h-12 rounded-full border-2 border-blue-400 shadow-md" 
+            />
+        </div>
+    </div>
+
+    {/* Main Content */}
+    <Outlet />
+</main>
         </div>
     );
 };
