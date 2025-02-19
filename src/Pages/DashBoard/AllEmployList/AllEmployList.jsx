@@ -86,7 +86,7 @@ const AllEmployList = () => {
       <div className='flex justify-end'>
         {/* Toggle Button */}
         <button
-          className="btn btn-primary mb-4"
+          className="btn btn-accent mb-4"
           onClick={() =>
             setViewMode(viewMode === 'table' ? 'grid' : 'table')
           }
@@ -128,7 +128,7 @@ const AllEmployList = () => {
                       <span className="text-red-500 font-bold">Fired</span>
                     ) : (
                       <button
-                        className="btn btn-danger"
+                        className="btn btn-info"
                         onClick={() => handleFireUser(user._id)}
                       >
                         Fire <FaFire className="text-red-600 text-2xl" />
@@ -215,13 +215,13 @@ const AllEmployList = () => {
             />
             <div className="flex justify-end gap-4">
             <button
-                className="btn btn-secondary"
+                className="btn btn-info"
                 onClick={() => setShowPopup(false)}
               >
                 Cancel
               </button>
               <button
-                className="btn btn-primary"
+                className="btn btn-accent"
                 onClick={handleUpdateSalary}
                 disabled={parseFloat(newSalary) <= parseFloat(selectedUser?.salary)}
               >

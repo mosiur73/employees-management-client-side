@@ -108,7 +108,7 @@ const Navbar = () => {
               <button className='btn btn-accent'>Signup</button>
             </Link>
             <Link to="/login">
-              <button className='btn btn-error ml-3'>Login</button>
+              <button className='btn btn-info ml-3'>Login</button>
             </Link>
           </>
         )}

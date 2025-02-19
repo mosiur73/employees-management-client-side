@@ -57,7 +57,7 @@ console.log(users)
 
     return (
         <div>
-              a
+              
             <h3 className='text-2xl mb-2'>Total payment: {users.length}</h3>
             <div className="overflow-x-auto">
                 <table className="table">
