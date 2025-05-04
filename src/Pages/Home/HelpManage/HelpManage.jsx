@@ -25,7 +25,7 @@ const HelpManage = () => {
                              a single point of contact. Read more…
                             </p>
             
-                            {/* Features Section */}
+                           
                             <div className="mt-4 lg:mt-8 max-w-3xl">
                                 <ul className="text-gray-700 space-y-2 lg:space-y-4">
                                     <li>✨ Improved analytics and reporting.</li>

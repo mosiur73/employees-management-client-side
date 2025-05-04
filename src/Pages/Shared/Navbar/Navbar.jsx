@@ -12,10 +12,10 @@ const Navbar = () => {
   const handleSignOut = async () => {
     try {
       await signOutUser();
-      toast.success('You have successfully signed out!');
+      toast.success('You have successfully signed out');
       setDropdownVisible(false);
     } catch (error) {
-      toast.error('Failed to sign out. Please try again.');
+      toast.error('Failed  sign out. Please try again.');
       console.error('Sign-out error:', error);
     }
   };
